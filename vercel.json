@@ -2,16 +2,28 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "functions": {
     "src/app/(payload)/admin/[[...segments]]/page.tsx": {
-      "maxDuration": 60
+      "maxDuration": 60,
+      "includeFiles": "node_modules/drizzle-kit/**"
     },
     "src/app/(payload)/api/[...slug]/route.ts": {
-      "maxDuration": 60
+      "maxDuration": 60,
+      "includeFiles": "node_modules/drizzle-kit/**"
     },
     "src/app/(payload)/api/seed/route.ts": {
-      "maxDuration": 60
+      "maxDuration": 60,
+      "includeFiles": "node_modules/drizzle-kit/**"
+    },
+    "src/app/(payload)/api/init-schema/route.ts": {
+      "maxDuration": 60,
+      "includeFiles": "node_modules/drizzle-kit/**"
+    },
+    "src/app/(payload)/api/debug/route.ts": {
+      "maxDuration": 60,
+      "includeFiles": "node_modules/drizzle-kit/**"
     },
     "src/app/(payload)/api/graphql/route.ts": {
-      "maxDuration": 60
+      "maxDuration": 60,
+      "includeFiles": "node_modules/drizzle-kit/**"
     }
   }
 }
