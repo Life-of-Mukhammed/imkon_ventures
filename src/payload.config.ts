@@ -20,11 +20,19 @@ const dbUri = process.env.DATABASE_URI || ''
 const isPostgres = /^postgres(ql)?:\/\//.test(dbUri)
 
 const db = isPostgres
-  ? postgresAdapter({ pool: { connectionString: dbUri } })
+  ? postgresAdapter({
+      pool: { connectionString: dbUri },
+      // Auto-sync schema on connect. Required because we don't ship
+      // migrations — Payload's default in production is push:false which
+      // expects migrations to exist. With push:true the adapter creates /
+      // updates tables on the first connection.
+      push: true,
+    })
   : sqliteAdapter({
       client: {
         url: dbUri.startsWith('file:') ? dbUri : 'file:./payload-local.db',
       },
+      push: true,
     })
 
 export default buildConfig({
