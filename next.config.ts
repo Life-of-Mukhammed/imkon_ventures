@@ -19,6 +19,17 @@ const nextConfig: NextConfig = {
     'drizzle-kit',
     'drizzle-orm',
   ],
+  // Force-include drizzle-kit in the serverless function bundle for the
+  // routes that may call pushDevSchema. Without this, Vercel's nft tracer
+  // doesn't follow the dynamic require('drizzle-kit/api') and leaves the
+  // package out of /var/task/node_modules.
+  outputFileTracingIncludes: {
+    '/api/init-schema': ['./node_modules/drizzle-kit/**/*'],
+    '/api/seed': ['./node_modules/drizzle-kit/**/*'],
+    '/api/debug': ['./node_modules/drizzle-kit/**/*'],
+    '/admin/[[...segments]]': ['./node_modules/drizzle-kit/**/*'],
+    '/api/[...slug]': ['./node_modules/drizzle-kit/**/*'],
+  },
   // Allow larger uploads (logos, hero videos) through the admin
   experimental: {
     serverActions: {
