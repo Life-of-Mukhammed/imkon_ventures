@@ -16,6 +16,8 @@ const nextConfig: NextConfig = {
     'pino-pretty',
     '@libsql/client',
     'better-sqlite3',
+    'drizzle-kit',
+    'drizzle-orm',
   ],
   // Allow larger uploads (logos, hero videos) through the admin
   experimental: {
