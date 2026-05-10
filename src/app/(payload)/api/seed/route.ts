@@ -3,6 +3,9 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { runSeed } from '@/scripts/seed'
 
+export const maxDuration = 60
+export const dynamic = 'force-dynamic'
+
 /**
  * Seed endpoint — protected by SEED_TOKEN env var.
  *
